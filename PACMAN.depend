@@ -1,28 +1,29 @@
 # depslib dependency file v1.0
-1540563636 source:c:\users\milet\desktop\pacman\main.c
+1541582636 source:c:\users\milet\desktop\pacman\main.c
 	<string.h>
 	<conio.h>
-	<time.h>
 	"console.h"
 	"terrain.h"
 
-1540564344 source:c:\users\milet\desktop\pacman\console.c
+1540927477 source:c:\users\milet\desktop\pacman\console.c
 	"console.h"
 
-1540560879 c:\users\milet\desktop\pacman\console.h
+1540927477 c:\users\milet\desktop\pacman\console.h
 	<windows.h>
+	<stdio.h>
 
-1540561381 c:\users\milet\desktop\pacman\terrain.h
+1540557781 c:\users\milet\desktop\pacman\terrain.h
 	<stdio.h>
 	<stdlib.h>
 	"entite.h"
 
-1540562349 c:\users\milet\desktop\pacman\entite.h
+1541600144 c:\users\milet\desktop\pacman\entite.h
 	"console.h"
+	<time.h>
 
-1540561831 source:c:\users\milet\desktop\pacman\terrain.c
+1541582333 source:c:\users\milet\desktop\pacman\terrain.c
 	"terrain.h"
 
-1540563614 source:c:\users\milet\desktop\pacman\entite.c
+1541582922 source:c:\users\milet\desktop\pacman\entite.c
 	"entite.h"
 

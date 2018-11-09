@@ -16,3 +16,20 @@ void gotoligcol( int lig, int col )
     mycoord.Y = lig;
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
+
+void title()
+{
+    color(JAUNE,NOIR);
+    gotoligcol(3,30);
+    printf(" _______       _         ______    ___      ___        _        ___     _");
+    gotoligcol(4,30);
+    printf("|  ___  |     / \\       /  ____|  |   \\    /   |      / \\      |   \\   | |");
+    gotoligcol(5,30);
+    printf("| |___| |    / _ \\     |  /       | |\\ \\  / /| |     / _ \\     | |\\ \\  | |");
+    gotoligcol(6,30);
+    printf("|  _____|   / /_\\ \\    | |        | | \\ \\/ / | |    / /_\\ \\    | | \\ \\ | |");
+    gotoligcol(7,30);
+    printf("| |        / _____ \\   |  \\____   | |  \\__/  | |   / _____ \\   | |  \\ \\| | ");
+    gotoligcol(8,30);
+    printf("|_|       /_/     \\_\\   \\______|  |_|        |_|  /_/     \\_\\  |_|   \\___|");
+}

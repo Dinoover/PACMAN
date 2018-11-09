@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <stdio.h>
 
 #define NOIR 0
 #define BLEU_FONCE 1
@@ -20,3 +21,5 @@
 void color(int couleurDuTexte,int couleurDeFond);
 
 void gotoligcol( int lig, int col );
+
+void title();

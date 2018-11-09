@@ -1,4 +1,5 @@
 #include "console.h"
+#include <time.h>
 
 //Dimensions du labyrinthe
 #define HAUTEUR 15
@@ -14,6 +15,7 @@ typedef struct pacman
     int pos_x, pos_y; //position de pacman
     int dir; //direction de pacman
     int power_up;
+    int vie;
 
 }t_pacman;
 
@@ -27,8 +29,12 @@ typedef struct fantome
 }t_fantome;
 
 
-void collision(t_pacman *pac, int mat[LARGEUR][HAUTEUR], int next_dep);
+void collision_pacman(t_pacman *pac, int mat[LARGEUR][HAUTEUR], int next_dep);
 
 int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LARGEUR][HAUTEUR]);
+
+void collision_fantome(t_fantome *fan, int mat[LARGEUR][HAUTEUR], int next_dep);
+
+int deplacement_fantome(t_fantome *fan, t_pacman *pac, int laby[LARGEUR][HAUTEUR]);
 
 int mort(t_pacman *pac, t_fantome *fan);

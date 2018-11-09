@@ -3,7 +3,7 @@
 ///Fonction de lecture du fichier txt
 int lecture(int mat[LARGEUR][HAUTEUR])
 {
-    int score_max=0;int kek=0;
+    int score_max=0;
     int i,j;
     FILE* fic;
     if ((fic = fopen("./default.txt","r")) == NULL)
@@ -35,16 +35,21 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
     {
         for(j=0;j<HAUTEUR;j++)
         {
+            if(laby[i][j]==0)
+                gotoligcol(i+POSX,j+1+POSY);
+
+            //affichage des murs
+            color(BLANC,BLEU);
+            if(laby[i][j]==1)
+                printf(" ");
+
+            color(JAUNE,NOIR);
             if(laby[i][j]==2)   //position initiale de pacman
             {
                 pac->pos_x=i;
                 pac->pos_y=j;
+                printf("X");
             }
-            color(BLANC,BLEU);
-            if(laby[i][j]==1)
-                printf(" ");
-            if(laby[i][j]==0)
-                gotoligcol(i+POSX,j+1+POSY);
 
             color(BLANC,NOIR);
             if(laby[i][j]==3)
@@ -56,16 +61,9 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
             {
                 fan->pos_x=i;
                 fan->pos_y=j;
+                printf("F");
             }
         }
         gotoligcol(i+1+POSX,POSY);
     }
-
-    //position initiale de pacman
-    gotoligcol(pac->pos_x+POSX,pac->pos_y+POSY);
-    color(14,0);
-    printf("O");
-    color(12,0);
-    gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
-    printf("F");
 }

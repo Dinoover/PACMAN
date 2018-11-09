@@ -1,12 +1,11 @@
 #include <string.h>
 #include <conio.h>
-#include <time.h>
 #include "console.h"
 #include "terrain.h"
 
-#define DELAY 10000
+#define DELAY 8000
 
-int main()
+int main(int argc, char *argv[])
 {
     int laby[LARGEUR][HAUTEUR];
     char key=0;
@@ -18,9 +17,13 @@ int main()
     t_pacman pac;
     t_fantome fan;
 
+    srand(time(NULL));
+
     score_max=lecture(laby);
 
     affichage(laby,&pac,&fan);
+
+    pac.vie=3;
 
     ///Boule d'évènement
     while(fin!=1)
@@ -52,12 +55,21 @@ int main()
         }
 
         game_over=game_over+deplacement_pacman(&pac,&fan,next_dep,laby);
+        game_over=game_over+deplacement_fantome(&fan,&pac,laby);
 
         if(game_over<0 || game_over==score_max)
             fin++;
 
-        gotoligcol(20,70);
-        printf("x = %d y = %d   score: %d  ",pac.pos_x,pac.pos_y,game_over);
+        //debug info
+        color(VERT,NOIR);
+        gotoligcol(15,40);
+        printf("pac_x = %d pac_y = %d ",pac.pos_x,pac.pos_y);
+        gotoligcol(17,40);
+        printf("fan_x = %d fan_y = %d ",fan.pos_x,fan.pos_y);
+        gotoligcol(19,40);
+        printf("score = %d      vie = %d",game_over,pac.vie);
+
+        title();
 
         //delai
         for(i=0;i<DELAY;i++)
@@ -66,6 +78,7 @@ int main()
         }
     }
 
+    gotoligcol(20,10);
     color(BLANC,NOIR);
 
     return 0;

@@ -32,4 +32,17 @@ void title()
     printf("| |        / _____ \\   |  \\____   | |  \\__/  | |   / _____ \\   | |  \\ \\| | ");
     gotoligcol(8,30);
     printf("|_|       /_/     \\_\\   \\______|  |_|        |_|  /_/     \\_\\  |_|   \\___|");
+
+    color(ROUGE,NOIR);
+    gotoligcol(15,10);
+    printf("MILETIC Petar");
+    gotoligcol(16,10);
+    printf("LASOU Guillaume");
+    gotoligcol(17,10);
+    printf("JULLEMIER Arnaud");
+
+    color(NOIR,BLANC);
+    gotoligcol(20,20);
+    printf("Appuyer sur une touche pour continuer");
+    color(BLANC,NOIR);
 }

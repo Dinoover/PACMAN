@@ -63,7 +63,17 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
                 fan->pos_y=j;
                 printf("F");
             }
+            if(laby[i][j]==5)
+            {
+                color(BLANC,NOIR);
+                printf("@");
+            }
         }
         gotoligcol(i+1+POSX,POSY);
     }
+}
+
+void niveau1(t_pacman *pac)
+{
+   //int tab[]
 }

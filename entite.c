@@ -122,6 +122,13 @@ int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LAR
             default:break;
         }
 
+        //MEGA GOMME
+        if(laby[pac->pos_x][pac->pos_y]==5)
+        {
+            pac->power_up=1;
+            laby[pac->pos_x][pac->pos_y]=0;//suppresion de l'objet de la case
+        }
+
         //MIAM
         if(laby[pac->pos_x][pac->pos_y]==3)
         {
@@ -132,11 +139,42 @@ int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LAR
         return game_over;
 }
 
-int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR])
+int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR], int mode)
 {
     color(ROUGE,NOIR);
     int game_over=0;
-    int next_dep=rand()%4+1;
+    int next_dep=0;
+    //Les variables murs servent à déterminer si il y a un mur dans telle direction, si il n'y en pas alors elle est nulle
+    int mur_haut = 0;
+    int mur_droite = 0;
+    int mur_gauche = 0;
+    int mur_bas = 0;
+
+    if(laby[(fan->pos_x)-1][fan->pos_y]==1)//Si case au-dessus est un mur
+    {
+        mur_haut=4;
+    }
+
+    if(laby[(fan->pos_x)+1][fan->pos_y]==1)//Si case en-dessous est un mur
+    {
+        mur_bas = 2;
+    }
+
+    if(laby[(fan->pos_x)][(fan->pos_y)-1]==1)//Si case à gauche est un mur
+    {
+        mur_gauche = 3;
+    }
+
+    if(laby[(fan->pos_x)][(fan->pos_y)+1]==1)//Si case à droite est un mur
+    {
+        mur_droite = 1;
+    }
+
+
+//Détermination de la direction aléatoire en fonction des murs
+        do{
+        next_dep=rand()%4+1;
+        }while(next_dep == mur_bas || next_dep == mur_droite || next_dep == mur_gauche || next_dep == mur_haut);//La valeur aléatoire sera toujours différente de la dir. du mur ou de 0
     switch(next_dep)
     {
         case 1:
@@ -150,8 +188,12 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
             collision_fantome(fan,laby,next_dep);
             game_over=mort(pac,fan);
             gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à droite
+            if(pac->power_up==0)
             color(ROUGE,NOIR);
+            else
+            color(BLEU,NOIR);
             printf("F");
+
             break;
         case 2:
             color(BLANC,NOIR);
@@ -164,7 +206,10 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
             collision_fantome(fan,laby,next_dep);
             game_over=mort(pac,fan);
             gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en bas
+            if(pac->power_up==0)
             color(ROUGE,NOIR);
+            else
+            color(BLEU,NOIR);
             printf("F");
             break;
         case 3:
@@ -178,7 +223,10 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
             collision_fantome(fan,laby,next_dep);
             game_over=mort(pac,fan);
             gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à gauche
+            if(pac->power_up==0)
             color(ROUGE,NOIR);
+            else
+            color(BLEU,NOIR);
             printf("F");
             break;
         case 4:
@@ -192,7 +240,10 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
             collision_fantome(fan,laby,next_dep);
             game_over=mort(pac,fan);
             gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en haut
+            if(pac->power_up==0)
             color(ROUGE,NOIR);
+            else
+            color(BLEU,NOIR);
             printf("F");
             break;
         default:break;
@@ -205,11 +256,16 @@ int mort(t_pacman *pac, t_fantome *fan)
 {
     int ded=0;
 
-    if(pac->pos_x==fan->pos_x && pac->pos_y==fan->pos_y)
+    if(pac->pos_x==fan->pos_x && pac->pos_y==fan->pos_y && pac->power_up==0)
     {
         pac->vie--;
         pac->pos_x=1;
         pac->pos_y=1;
+    }
+    if(pac->pos_x==fan->pos_x && pac->pos_y==fan->pos_y && pac->power_up==1)//super pacman
+    {
+        fan->pos_x=1;
+        fan->pos_y=1;
     }
     if(pac->vie==0)
     {

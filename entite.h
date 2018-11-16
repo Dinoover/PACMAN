@@ -35,6 +35,8 @@ int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LAR
 
 void collision_fantome(t_fantome *fan, int mat[LARGEUR][HAUTEUR], int next_dep);
 
-int deplacement_fantome(t_fantome *fan, t_pacman *pac, int laby[LARGEUR][HAUTEUR]);
+int deplacement_fantome(t_fantome *fan, t_pacman *pac, int laby[LARGEUR][HAUTEUR], int mode);
 
 int mort(t_pacman *pac, t_fantome *fan);
+
+void niveau1(t_pacman* pac);

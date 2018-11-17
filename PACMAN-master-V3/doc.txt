@@ -1,0 +1,16 @@
+/*************************************************************************/
+				PACMAN
+/*************************************************************************/
+
+Vous le connaissez sûrement, mais voici une brève description de son adaptation en projet pour les ING3 de l’ECE-Paris-Lyon.
+Le PACMAN est un jeu classique dans lequel un personnage se déplace dans un espace plus ou moins complexe pour manger des diamants. Il peut aller dans 4 directions à l’aide du clavier et doit éviter de se faire attraper par des fantômes qui sillonnent l’espace de jeu. C’est un jeu qui se joue traditionnellement seul. Il en existe plusieurs variantes qui offrent des difficultés différentes. Les images suivantes montrent quelques illustrations de tableaux en mode graphique. Nous vous proposons ici d’en faire une version en mode console.
+Le but du jeu de base est de réussir à manger les diamants présents sur 4 tableaux de difficulté croissante.
+Les obstacles qui barrent la route du PACMAN sont nombreux et certains sont même mortels. Heureusement le PACMAN dispose de 5 vies pour mener à bien sa mission.
+Après un écran d’accueil qui annonce le nom du jeu ainsi que le nom des auteurs, le jeu débute par un menu qui offre un certain nombre d’options.
+
+Menu du jeu :
+Au début, le jeu propose un menu avec les options suivantes :
+-	Règles du jeu. Offre au joueur une rapide description du jeu et du but à atteindre.
+-	Vitesse de départ. Cette option permet de régler la vitesse initiale comprise entre 1 (PACMAN très lent) et 3 (PACMAN rapide) dans le but de définir une vitesse de démarrage compatible avec la puissance de la machine du joueur. 
+-	Bordure. Cette option permet 2 valeurs possibles : « off » (choix par défaut) si l’utilisateur ne souhaite pas de bordure autour du plateau du jeu, ou « on » dans le cas contraire. Dans le cas où l’option Bordure du menu est « on », la bordure du plateau est délimitée par des murs visibles. Dans ce cas, si le PACMAN touche une bordure, son nombre de vies diminue de 1.
+

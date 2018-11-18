@@ -1,5 +1,7 @@
 #include <windows.h>
 #include <stdio.h>
+#include <string.h>
+#include <conio.h>
 
 #define NOIR 0
 #define BLEU_FONCE 1

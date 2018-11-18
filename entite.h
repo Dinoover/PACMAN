@@ -2,11 +2,11 @@
 #include <time.h>
 
 //Dimensions du labyrinthe
-#define HAUTEUR 15
-#define LARGEUR 15
+#define HAUTEUR 20
+#define LARGEUR 50
 
 #define POSX 5
-#define POSY 5
+#define POSY 20
 
 ///Entités pacman (joueur) et fantomes (IA)
 
@@ -35,8 +35,14 @@ int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LAR
 
 void collision_fantome(t_fantome *fan, int mat[LARGEUR][HAUTEUR], int next_dep);
 
-int deplacement_fantome(t_fantome *fan, t_pacman *pac, int laby[LARGEUR][HAUTEUR], int mode);
+//int deplacement_fantome(t_fantome *fan, t_pacman *pac, int laby[LARGEUR][HAUTEUR], int mode);
+
+int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR], int bordures);
+
+int deplacement_fantome_lvl3(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]);
 
 int mort(t_pacman *pac, t_fantome *fan);
 
-void niveau1(t_pacman* pac);
+
+
+

@@ -11,6 +11,7 @@ int lecture(int mat[LARGEUR][HAUTEUR])
         printf("Error! opening file");
         exit(1);
     }
+
     for(i=0;i<LARGEUR;i++)
     {
         for(j=0;j<HAUTEUR;j++)
@@ -20,6 +21,7 @@ int lecture(int mat[LARGEUR][HAUTEUR])
                 score_max++;
         }
     }
+
     fclose(fic);
     return score_max;
 }
@@ -31,20 +33,20 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
     //Terrain
     color(BLEU,NOIR);
     gotoligcol(POSX,POSY);
-    for(i=0;i<LARGEUR;i++)
+    for(i=0;i<HAUTEUR;i++)
     {
-        for(j=0;j<HAUTEUR;j++)
+        for(j=0;j<LARGEUR;j++)
         {
-            if(laby[i][j]==0)
+            if(laby[j][i]==0)
                 gotoligcol(i+POSX,j+1+POSY);
 
             //affichage des murs
             color(BLANC,BLEU);
-            if(laby[i][j]==1)
+            if(laby[j][i]==1)
                 printf(" ");
 
             color(JAUNE,NOIR);
-            if(laby[i][j]==2)   //position initiale de pacman
+            if(laby[j][i]==2)   //position initiale de pacman
             {
                 pac->pos_x=i;
                 pac->pos_y=j;
@@ -52,18 +54,20 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
             }
 
             color(BLANC,NOIR);
-            if(laby[i][j]==3)
+            if(laby[j][i]==3)
+            {
                 printf("o");
+            }
 
             color(BLEU,NOIR);
 
-            if(laby[i][j]==4)
+            if(laby[j][i]==4)
             {
                 fan->pos_x=i;
                 fan->pos_y=j;
                 printf("F");
             }
-            if(laby[i][j]==5)
+            if(laby[j][i]==5)
             {
                 color(BLANC,NOIR);
                 printf("@");
@@ -71,9 +75,4 @@ void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan)
         }
         gotoligcol(i+1+POSX,POSY);
     }
-}
-
-void niveau1(t_pacman *pac)
-{
-   //int tab[]
 }

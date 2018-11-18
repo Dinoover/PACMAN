@@ -20,20 +20,24 @@ void collision_pacman(t_pacman *pac, int mat[LARGEUR][HAUTEUR], int next_dep)
     {
         pac->pos_y=0;
     }
-    if(next_dep==1 && mat[pac->pos_x][pac->pos_y]==1)
+    if(next_dep==1 && mat[pac->pos_y][pac->pos_x]==1)
     {
+        pac->vie--;
         pac->pos_y--;
     }
-    if(next_dep==2 && mat[pac->pos_x][pac->pos_y]==1)
+    if(next_dep==2 && mat[pac->pos_y][pac->pos_x]==1)
     {
+        pac->vie--;
         pac->pos_x--;
     }
-    if(next_dep==3 && mat[pac->pos_x][pac->pos_y]==1)
+    if(next_dep==3 && mat[pac->pos_y][pac->pos_x]==1)
     {
+        pac->vie--;
         pac->pos_y++;
     }
-    if(next_dep==4 && mat[pac->pos_x][pac->pos_y]==1)
+    if(next_dep==4 && mat[pac->pos_y][pac->pos_x]==1)
     {
+        pac->vie--;
         pac->pos_x++;
     }
 }
@@ -57,19 +61,19 @@ void collision_fantome(t_fantome *fan, int mat[LARGEUR][HAUTEUR], int next_dep)
     {
         fan->pos_y=0;
     }
-    if(next_dep==1 && mat[fan->pos_x][fan->pos_y]==1)
+    if(next_dep==1 && mat[fan->pos_y][fan->pos_x]==1)
     {
         fan->pos_y--;
     }
-    if(next_dep==2 && mat[fan->pos_x][fan->pos_y]==1)
+    if(next_dep==2 && mat[fan->pos_y][fan->pos_x]==1)
     {
         fan->pos_x--;
     }
-    if(next_dep==3 && mat[fan->pos_x][fan->pos_y]==1)
+    if(next_dep==3 && mat[fan->pos_y][fan->pos_x]==1)
     {
         fan->pos_y++;
     }
-    if(next_dep==4 && mat[fan->pos_x][fan->pos_y]==1)
+    if(next_dep==4 && mat[fan->pos_y][fan->pos_x]==1)
     {
         fan->pos_x++;
     }
@@ -122,24 +126,28 @@ int deplacement_pacman(t_pacman *pac, t_fantome *fan, int next_dep, int laby[LAR
             default:break;
         }
 
+
         //MEGA GOMME
-        if(laby[pac->pos_x][pac->pos_y]==5)
+        if(laby[pac->pos_y][pac->pos_x]==5)
         {
             pac->power_up=1;
-            laby[pac->pos_x][pac->pos_y]=0;//suppresion de l'objet de la case
+            laby[pac->pos_y][pac->pos_x]=0;//suppresion de l'objet de la case
         }
 
         //MIAM
-        if(laby[pac->pos_x][pac->pos_y]==3)
+        if(laby[pac->pos_y][pac->pos_x]==3)
         {
             game_over++;
-            laby[pac->pos_x][pac->pos_y]=0;
+            laby[pac->pos_y][pac->pos_x]=0;
         }
 
         return game_over;
 }
 
-int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR], int mode)
+
+
+///FONCTION DEPLACMENT LVL 2
+int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR], int bordures)
 {
     color(ROUGE,NOIR);
     int game_over=0;
@@ -149,6 +157,178 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
     int mur_droite = 0;
     int mur_gauche = 0;
     int mur_bas = 0;
+gotoligcol(1,0);
+    //Permet de garder la direction en mémoire
+
+    if(fan->dir==0)
+    {
+        next_dep=rand()%4+1;
+        fan->dir = next_dep;
+    }
+    printf("%d",fan->dir);
+
+    if(laby[(fan->pos_y)][(fan->pos_x)-1]==1)//Si case au-dessus est un mur
+    {
+        mur_haut=4;printf("mur haut    ");
+    }
+
+    if(laby[(fan->pos_y)][(fan->pos_x)+1]==1)//Si case en-dessous est un mur
+    {
+        mur_bas = 2;printf("mur bas   ");
+    }
+
+    if(laby[(fan->pos_y)-1][(fan->pos_x)]==1)//Si case à gauche est un mur
+    {
+        mur_gauche = 3;printf("mur gauche  ");
+    }
+
+    if(laby[(fan->pos_y)+1][(fan->pos_x)]==1)//Si case à droite est un mur
+    {
+        mur_droite = 1;printf("mur droit    ");
+    }
+    /*
+    ///déplacement aléatoire
+            do{
+            next_dep=rand()%4+1;
+            }while(next_dep == mur_bas || next_dep == mur_droite || next_dep == mur_gauche || next_dep == mur_haut);//La valeur aléatoire sera toujours différente de la dir. du mur ou de 0
+    */
+
+    switch(fan->dir)
+    {
+    case 1:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_y++;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à droite
+        color(ROUGE,NOIR);
+        printf("F");
+
+        if(bordures !=0)
+        {
+            //Rebondissement
+            if(mur_droite!=0)
+            {
+                fan->dir =3;
+            }
+        }
+        break;
+    case 2:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_x++;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en bas
+        color(ROUGE,NOIR);
+        printf("F");
+
+        if(bordures !=0)
+        {
+
+            //Rebondissement
+            if(mur_bas!=0)
+            {
+                fan->dir =4;
+            }
+        }
+        break;
+    case 3:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_y--;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à gauche
+        color(ROUGE,NOIR);
+        printf("F");
+        if(bordures !=0)
+        {
+            //Rebondissement
+            if(mur_gauche!=0)
+            {
+                fan->dir =1;
+            }
+
+        }
+        break;
+    case 4:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_x--;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en haut
+        color(ROUGE,NOIR);
+        printf("F");
+        if(bordures !=0)
+        {
+
+            //Rebondissement
+            if(mur_haut!=0)
+            {
+                fan->dir=2;
+            }
+        }
+        break;
+    default:
+        break;
+    }
+
+    return game_over;
+}
+
+
+///FONCTION DEPLACMENT LVL 3
+int deplacement_fantome_lvl3(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR])
+{
+    color(ROUGE,NOIR);
+    int game_over=0;
+    int next_dep=0;
+    //Les variables murs servent à déterminer si il y a un mur dans telle direction, si il n'y en pas alors elle est nulle
+    int mur_haut = 0;
+    int mur_droite = 0;
+    int mur_gauche = 0;
+    int mur_bas = 0;
+
+    if(pac->pos_y > fan->pos_y)//pacman + à droite que le fan
+    {
+        //next dep devra etre diff de gauche
+        mur_gauche = 3;
+    }
+    else if(pac->pos_y < fan->pos_y)//pacman + à gauche que le fan
+    {
+        //next dep devra etre diff de droite
+        mur_droite =1;
+    }
+    if(pac->pos_x > fan->pos_x)//pacman + bas que le fan
+    {
+        //next dep devra etre diff de haut
+        mur_haut=4;
+    }
+    else if(pac->pos_x < fan->pos_x)//pacman + haut que le fan
+    {
+        //next dep devra etre diff de bas
+        mur_bas=2;
+    }
+
 
     if(laby[(fan->pos_x)-1][fan->pos_y]==1)//Si case au-dessus est un mur
     {
@@ -170,87 +350,107 @@ int deplacement_fantome(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAUTEUR]
         mur_droite = 1;
     }
 
+        if(pac->pos_x == fan->pos_x && pac->pos_y < fan->pos_y)
+        {
+            next_dep = 3;
+        }
 
-//Détermination de la direction aléatoire en fonction des murs
-        do{
-        next_dep=rand()%4+1;
-        }while(next_dep == mur_bas || next_dep == mur_droite || next_dep == mur_gauche || next_dep == mur_haut);//La valeur aléatoire sera toujours différente de la dir. du mur ou de 0
-    switch(next_dep)
+        else if(pac->pos_x == fan->pos_x && pac->pos_y > fan->pos_y)
+        {
+            next_dep=1;
+        }
+
+        else if(pac->pos_y == fan->pos_y && pac->pos_x < fan->pos_x)
+        {
+            next_dep = 4;
+        }
+
+        else if(pac->pos_y == fan->pos_y && pac->pos_x > fan->pos_x)
+        {
+            next_dep=2;
+        }
+
+
+        ///déplacement aléatoire
+        else
+            {
+                    do{
+                    next_dep=rand()%4+1;
+                    }//La valeur aléatoire sera toujours différente de la dir. du mur ou de 0
+                    while(next_dep == mur_bas || next_dep == mur_droite || next_dep == mur_gauche || next_dep == mur_haut);
+            }
+
+            fan->dir = next_dep;
+
+    switch(fan->dir)
     {
-        case 1:
-            color(BLANC,NOIR);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
-            if(laby[fan->pos_x][fan->pos_y]==3)
-                    printf("o");
-                else
-                    printf(" ");
-            fan->pos_y++;
-            collision_fantome(fan,laby,next_dep);
-            game_over=mort(pac,fan);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à droite
-            if(pac->power_up==0)
-            color(ROUGE,NOIR);
-            else
-            color(BLEU,NOIR);
-            printf("F");
+    case 1:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_y++;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à droite
+        color(ROUGE,NOIR);
+        printf("F");
+        break;
+    case 2:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_x++;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en bas
+        color(ROUGE,NOIR);
+        printf("F");
 
-            break;
-        case 2:
-            color(BLANC,NOIR);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
-            if(laby[fan->pos_x][fan->pos_y]==3)
-                    printf("o");
-                else
-                    printf(" ");
-            fan->pos_x++;
-            collision_fantome(fan,laby,next_dep);
-            game_over=mort(pac,fan);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en bas
-            if(pac->power_up==0)
-            color(ROUGE,NOIR);
-            else
-            color(BLEU,NOIR);
-            printf("F");
-            break;
-        case 3:
-            color(BLANC,NOIR);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
-            if(laby[fan->pos_x][fan->pos_y]==3)
-                    printf("o");
-                else
-                    printf(" ");
-            fan->pos_y--;
-            collision_fantome(fan,laby,next_dep);
-            game_over=mort(pac,fan);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à gauche
-            if(pac->power_up==0)
-            color(ROUGE,NOIR);
-            else
-            color(BLEU,NOIR);
-            printf("F");
-            break;
-        case 4:
-            color(BLANC,NOIR);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
-            if(laby[fan->pos_x][fan->pos_y]==3)
-                    printf("o");
-                else
-                    printf(" ");
-            fan->pos_x--;
-            collision_fantome(fan,laby,next_dep);
-            game_over=mort(pac,fan);
-            gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en haut
-            if(pac->power_up==0)
-            color(ROUGE,NOIR);
-            else
-            color(BLEU,NOIR);
-            printf("F");
-            break;
-        default:break;
+        break;
+    case 3:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_y--;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement à gauche
+        color(ROUGE,NOIR);
+        printf("F");
+        break;
+
+    case 4:
+        color(BLANC,NOIR);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY);
+        if(laby[fan->pos_y][fan->pos_x]==3)
+            printf("o");
+        else
+            printf(" ");
+        fan->pos_x--;
+        collision_fantome(fan,laby,fan->dir);
+        game_over=mort(pac,fan);
+        gotoligcol(fan->pos_x+POSX,fan->pos_y+POSY); //deplacement en haut
+        color(ROUGE,NOIR);
+        printf("F");
+
+        break;
+    default:
+        break;
     }
 
     return game_over;
 }
+
+
 
 int mort(t_pacman *pac, t_fantome *fan)
 {

@@ -1,29 +1,42 @@
 # depslib dependency file v1.0
-1542393993 source:c:\users\milet\desktop\pacman\main.c
-	<string.h>
-	<conio.h>
+1542564601 source:c:\users\milet\desktop\pacman\main.c
 	"console.h"
-	"terrain.h"
+	"menu.h"
+	"niveau.h"
 
 1542393146 source:c:\users\milet\desktop\pacman\console.c
 	"console.h"
 
-1540927477 c:\users\milet\desktop\pacman\console.h
+1542458636 c:\users\milet\desktop\pacman\console.h
 	<windows.h>
 	<stdio.h>
+	<string.h>
+	<conio.h>
 
-1540557781 c:\users\milet\desktop\pacman\terrain.h
+1542502865 c:\users\milet\desktop\pacman\terrain.h
 	<stdio.h>
 	<stdlib.h>
 	"entite.h"
 
-1542355408 c:\users\milet\desktop\pacman\entite.h
+1542557274 c:\users\milet\desktop\pacman\entite.h
 	"console.h"
 	<time.h>
 
-1542354643 source:c:\users\milet\desktop\pacman\terrain.c
+1542537827 source:c:\users\milet\desktop\pacman\terrain.c
 	"terrain.h"
 
-1542355408 source:c:\users\milet\desktop\pacman\entite.c
+1542565122 source:c:\users\milet\desktop\pacman\entite.c
 	"entite.h"
+
+1542458470 c:\users\milet\desktop\pacman\menu.h
+	"console.h"
+
+1542458470 source:c:\users\milet\desktop\pacman\menu.c
+	"menu.h"
+
+1542563254 c:\users\milet\desktop\pacman\niveau.h
+	"entite.h"
+
+1542565913 source:c:\users\milet\desktop\pacman\niveau.c
+	"niveau.h"
 

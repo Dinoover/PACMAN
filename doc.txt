@@ -2,15 +2,23 @@
 				PACMAN
 /*************************************************************************/
 
-Vous le connaissez sûrement, mais voici une brève description de son adaptation en projet pour les ING3 de l’ECE-Paris-Lyon.
-Le PACMAN est un jeu classique dans lequel un personnage se déplace dans un espace plus ou moins complexe pour manger des diamants. Il peut aller dans 4 directions à l’aide du clavier et doit éviter de se faire attraper par des fantômes qui sillonnent l’espace de jeu. C’est un jeu qui se joue traditionnellement seul. Il en existe plusieurs variantes qui offrent des difficultés différentes. Les images suivantes montrent quelques illustrations de tableaux en mode graphique. Nous vous proposons ici d’en faire une version en mode console.
-Le but du jeu de base est de réussir à manger les diamants présents sur 4 tableaux de difficulté croissante.
-Les obstacles qui barrent la route du PACMAN sont nombreux et certains sont même mortels. Heureusement le PACMAN dispose de 5 vies pour mener à bien sa mission.
-Après un écran d’accueil qui annonce le nom du jeu ainsi que le nom des auteurs, le jeu débute par un menu qui offre un certain nombre d’options.
+Deplacement : 
+-Le pacman peut se deplacer a l'aides touches ZQSD dans 4 directions differentes. 
+-Peut quitter la partie avec la touche 'y' et mettre en pause avec la touche 'p'. 
 
-Menu du jeu :
-Au début, le jeu propose un menu avec les options suivantes :
--	Règles du jeu. Offre au joueur une rapide description du jeu et du but à atteindre.
--	Vitesse de départ. Cette option permet de régler la vitesse initiale comprise entre 1 (PACMAN très lent) et 3 (PACMAN rapide) dans le but de définir une vitesse de démarrage compatible avec la puissance de la machine du joueur. 
--	Bordure. Cette option permet 2 valeurs possibles : « off » (choix par défaut) si l’utilisateur ne souhaite pas de bordure autour du plateau du jeu, ou « on » dans le cas contraire. Dans le cas où l’option Bordure du menu est « on », la bordure du plateau est délimitée par des murs visibles. Dans ce cas, si le PACMAN touche une bordure, son nombre de vies diminue de 1.
+Le joueur peut se deplacer dans 4 directions a l'aide du clavier et doit eviter de se faire attraper par des fantomes qui sillonnent l'espace du jeu. 
+Le but du jeu est d’attraper tous les diamants de chaque niveau, 
+Il y a 5 diamants par niveau avec un score de 10 points par diamant acquis. 
+Pour cela le joueur possède 5 vies puisque plus les niveaux seront eleves plus la difficulte de jeu augmentera. 
+Ces ennemis sont des fantomes,  
+Niveau 1 
+-Le niveau 1 comporte 5 diamants ainsi que 4 ennemis qui sont des fantomes 
+Niveau 2 : 
+-Le niveau 2 comporte 5 diamants ainsi que 4 ennemis qui sont des fantomes qui se deplacent de manière aleatoire.
+Niveau 3 :
+-Le niveau 3 comporte 5 diamants ainsi que 4 ennemis qui sont des fantomes qui se deplacent de manière aleatoire mais aussi de manière intelligente pour rajouter une difficulte et possèdent deux vitesses de deplacement (normal et rapide). 
+Niveau 4 : 
+-La Pac-Man devient un Snake qui doit toujours manger les diamants sans toucher les bordures avec son corps. Si le Snake mange le caractère '*' alors le Snake s’allonge de 5 caractères, son score augmente de 5 points et obtient une vie supplementaire.
+
+
 

@@ -370,6 +370,8 @@ int deplacement_fantome_lvl3(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAU
         }
 
 
+
+
         ///déplacement aléatoire
         else
             {

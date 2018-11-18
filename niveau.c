@@ -42,6 +42,15 @@ void gameplay(t_pacman *pac, t_fantome *fan, int delai, int bordures, int* level
 
         score=score+score_tableau;
 
+        if(*level==3)   //fin de la partie retour au menu
+        {
+            //return_menu++;
+            score_max=5;
+            game_over=0;
+            *level=0;
+            nb_dia=nb_dia*2-1;
+        }
+
         if(*level==0)
         {
             system("cls");
@@ -67,15 +76,11 @@ void gameplay(t_pacman *pac, t_fantome *fan, int delai, int bordures, int* level
             game_over=0;
             score_max=5;
             score_tableau=100;
-            //lecture(laby);
-            niveau_3(pac,fan,laby,bordures,nb_dia);
+            lecture(laby,pac,fan,bordures,nb_dia);
+            //niveau_3(pac,fan,laby,bordures,nb_dia);
             next_dep=rand()%4+1;
         }
 
-        if(*level==3)   //fin de la partie retour au menu
-        {
-            return_menu++;
-        }
 
         gotoligcol(2,20);
         color(NOIR,BLANC);
@@ -211,6 +216,15 @@ void niveau_1(t_pacman *pac, t_fantome *fan, int laby[LARGEUR][HAUTEUR], int bor
     int posx_pac,posy_pac;  //position du pacman
     int posx_dia,posy_dia;  //position des diamants
     int score=0;    //score de la partie
+
+    //reset du tableau
+    for(i=0;i<LARGEUR;i++)
+    {
+        for(j=0;j<HAUTEUR;j++)
+        {
+            laby[i][j]=0;
+        }
+    }
 
     if(bordures==1) //LES BORDURES SONT ACTIVES / DIAMANTS ET PACMAN HORS DES MURS
     {

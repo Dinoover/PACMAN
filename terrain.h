@@ -2,6 +2,6 @@
 #include <stdlib.h>
 #include "entite.h"
 
-int lecture(int mat[LARGEUR][HAUTEUR]);
+int lecture(int mat[LARGEUR][HAUTEUR],t_pacman *pac, t_fantome*fan, int bordures, int nb_dia);
 
 void affichage(int laby[LARGEUR][HAUTEUR], t_pacman *pac, t_fantome *fan);

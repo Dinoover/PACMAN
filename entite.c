@@ -165,26 +165,25 @@ gotoligcol(1,0);
         next_dep=rand()%4+1;
         fan->dir = next_dep;
     }
-    printf("%d",fan->dir);
 
     if(laby[(fan->pos_y)][(fan->pos_x)-1]==1)//Si case au-dessus est un mur
     {
-        mur_haut=4;printf("mur haut    ");
+        mur_haut=4;
     }
 
     if(laby[(fan->pos_y)][(fan->pos_x)+1]==1)//Si case en-dessous est un mur
     {
-        mur_bas = 2;printf("mur bas   ");
+        mur_bas = 2;
     }
 
     if(laby[(fan->pos_y)-1][(fan->pos_x)]==1)//Si case à gauche est un mur
     {
-        mur_gauche = 3;printf("mur gauche  ");
+        mur_gauche = 3;
     }
 
     if(laby[(fan->pos_y)+1][(fan->pos_x)]==1)//Si case à droite est un mur
     {
-        mur_droite = 1;printf("mur droit    ");
+        mur_droite = 1;
     }
     /*
     ///déplacement aléatoire
@@ -330,22 +329,22 @@ int deplacement_fantome_lvl3(t_fantome *fan, t_pacman *pac,int laby[LARGEUR][HAU
     }
 
 
-    if(laby[(fan->pos_x)-1][fan->pos_y]==1)//Si case au-dessus est un mur
+   if(laby[(fan->pos_y)][(fan->pos_x)-1]==1)//Si case au-dessus est un mur
     {
         mur_haut=4;
     }
 
-    if(laby[(fan->pos_x)+1][fan->pos_y]==1)//Si case en-dessous est un mur
+    if(laby[(fan->pos_y)][(fan->pos_x)+1]==1)//Si case en-dessous est un mur
     {
         mur_bas = 2;
     }
 
-    if(laby[(fan->pos_x)][(fan->pos_y)-1]==1)//Si case à gauche est un mur
+    if(laby[(fan->pos_y)-1][(fan->pos_x)]==1)//Si case à gauche est un mur
     {
         mur_gauche = 3;
     }
 
-    if(laby[(fan->pos_x)][(fan->pos_y)+1]==1)//Si case à droite est un mur
+    if(laby[(fan->pos_y)+1][(fan->pos_x)]==1)//Si case à droite est un mur
     {
         mur_droite = 1;
     }

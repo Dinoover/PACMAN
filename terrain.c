@@ -12,13 +12,22 @@ int lecture(int mat[LARGEUR][HAUTEUR])
         exit(1);
     }
 
-    for(i=0;i<LARGEUR;i++)
+    //reset du tableau
+    for(i=0;i<HAUTEUR;i++)
     {
-        for(j=0;j<HAUTEUR;j++)
+        for(j=0;j<LARGEUR;j++)
         {
-            fscanf(fic,"%d",&mat[i][j]);
-            if(mat[i][j]==3)
-                score_max++;
+            mat[j][i]=0;
+        }
+    }
+
+    for(i=0;i<HAUTEUR;i++)
+    {
+        for(j=0;j<LARGEUR;j++)
+        {
+            fscanf(fic,"%d",&mat[j][i]);
+            //if(mat[i][j]==3)
+              //  score_max++;
         }
     }
 

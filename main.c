@@ -14,6 +14,7 @@ int chargement(int *level)
     }
 
     fscanf(fic,"%d",&score);
+    fscanf(fic,"%d",&(*level));
 
     fclose(fic);
     return score;
@@ -124,7 +125,7 @@ int main(int argc, char *argv[])
                     system("cls");
                     level=0;
                     score=0;
-                    gameplay(&pac,fan,delai,bordures,&level,score);
+                    gameplay(&pac,fan,delai,bordures,&level,&score);
                     system("cls");
                     choix=0;
                     color(BLANC,NOIR);
@@ -134,7 +135,7 @@ int main(int argc, char *argv[])
                     pac.vie=5; ///REGAIN DES PV DU PACMAN
                     system("cls");
                     score=chargement(&level);   //Chargement du niveau en cours
-                    gameplay(&pac,fan,delai,bordures,&level,score);
+                    gameplay(&pac,fan,delai,bordures,&level,&score);
                     system("cls");
                     choix=0;
                     color(BLANC,NOIR);

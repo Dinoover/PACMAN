@@ -1,0 +1,85 @@
+# depslib dependency file v1.0
+1542393993 source:c:\users\milet\desktop\pacman\main.c
+	<string.h>
+	<conio.h>
+	"console.h"
+	"terrain.h"
+
+1542393146 source:c:\users\milet\desktop\pacman\console.c
+	"console.h"
+
+1540927477 c:\users\milet\desktop\pacman\console.h
+	<windows.h>
+	<stdio.h>
+
+1540557781 c:\users\milet\desktop\pacman\terrain.h
+	<stdio.h>
+	<stdlib.h>
+	"entite.h"
+
+1542355408 c:\users\milet\desktop\pacman\entite.h
+	"console.h"
+	<time.h>
+
+1542354643 source:c:\users\milet\desktop\pacman\terrain.c
+	"terrain.h"
+
+1542355408 source:c:\users\milet\desktop\pacman\entite.c
+	"entite.h"
+
+1542395327 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\console.c
+	"console.h"
+
+1542395327 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\console.h
+	<windows.h>
+	<stdio.h>
+
+1542477733 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\entite.c
+	"entite.h"
+
+1542489249 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\entite.h
+	"console.h"
+	<time.h>
+
+1542489233 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\main.c
+	<string.h>
+	<conio.h>
+	"console.h"
+	"terrain.h"
+
+1542489212 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\terrain.h
+	<stdio.h>
+	<stdlib.h>
+	"entite.h"
+
+1542489224 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master\terrain.c
+	"terrain.h"
+
+1542395327 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\console.c
+	"console.h"
+
+1542395327 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\console.h
+	<windows.h>
+	<stdio.h>
+
+1542561880 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\entite.c
+	"entite.h"
+
+1542548402 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\entite.h
+	"console.h"
+	<time.h>
+
+1542559766 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\main.c
+	<string.h>
+	<conio.h>
+	"console.h"
+	"terrain.h"
+
+1542489212 c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\terrain.h
+	<stdio.h>
+	<stdlib.h>
+	"entite.h"
+
+1542534323 source:c:\users\guill\onedrive\documents\ece\ing3\info\projet\v2\pacman-master-v3\terrain.c
+	"terrain.h"
+
